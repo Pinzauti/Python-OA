@@ -1,4 +1,5 @@
 # CERN OA
+[![Python package](https://github.com/Pinzauti/cern_oa/actions/workflows/python-package.yml/badge.svg)](https://github.com/Pinzauti/cern_oa/actions/workflows/python-package.yml)
 [![Pylint](https://github.com/Pinzauti/cern_oa/actions/workflows/pylint.yml/badge.svg)](https://github.com/Pinzauti/cern_oa/actions/workflows/pylint.yml)
 
 Online Assessment for CERN.
@@ -24,7 +25,7 @@ The project has the following file structure.
     ├── .github/                                # Github actions
     │   └── workflows/                          # Workflows                         
     │       ├── pylint.yml                      # Pylint workflow
-    │       └── python-app.yml                  # Python workflow
+    │       └── python-package.yml                  # Python workflow
     ├── src/                                    # Source code
     │   └── cern_oa/                            # Package
     │       ├── tests/                          # Tests

@@ -25,7 +25,7 @@ The project has the following file structure.
     ├── .github/                                # Github actions
     │   └── workflows/                          # Workflows                         
     │       ├── pylint.yml                      # Pylint workflow
-    │       └── python-package.yml                  # Python workflow
+    │       └── python-package.yml              # Python workflow
     ├── src/                                    # Source code
     │   └── cern_oa/                            # Package
     │       ├── tests/                          # Tests

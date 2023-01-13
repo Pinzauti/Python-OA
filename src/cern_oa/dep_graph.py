@@ -25,4 +25,52 @@ def open_file(path: str = os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json
     return dependencies
 
 
+def get_dependencies(package: str, dependencies: dict[str, list], depth: int) \
+        -> Generator[tuple[str, int]]:
+    """
+    It returns the dependencies of the package.
+    :param package:
+    :type package:
+    :param dependencies:
+    :type dependencies:
+    :param depth:
+    :type depth:
+    :return:
+    :rtype:
+    """
+    if package in dependencies:
+        for dependency in dependencies[package]:
+            yield dependency, depth + 1
+            yield from get_dependencies(dependency, dependencies, depth + 1)
 
+
+def get_dependency_graph(dependencies: dict[str, list]) -> Generator[tuple[str, int]]:
+    """
+
+    :param dependencies:
+    :type dependencies:
+    :return:
+    :rtype:
+    """
+    for package in dependencies:
+        yield package, 0
+        yield from get_dependencies(package, dependencies, 0)
+
+
+
+
+def main():
+    """
+
+    :return:
+    :rtype:
+    """
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument('-f', '--file', type=str, help='Path to file with dependencies',
+                        default=os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json'))
+    file = open_file(parser.parse_args().file)
+
+
+
+if __name__ == '__main__':
+    main()

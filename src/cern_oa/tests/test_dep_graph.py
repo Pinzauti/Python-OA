@@ -42,4 +42,26 @@ class TestGetDependencyGraph:
                 ('pkg4', 2), ('pkg3', 0), ('pkg4', 1)]
 
 
+class TestGetDependencies:
+    def test_get_dependencies(self):
+        assert list(
+            get_dependencies("pkg1", {"pkg1": ["pkg2", "pkg3"], "pkg2": ["pkg3"], "pkg3": []},
+                             0)) == \
+               [('pkg2', 1), ('pkg3', 2), ('pkg3', 1)]
 
+    def test_get_dependencies_empty(self):
+        assert list(get_dependencies("pkg1", {}, 0)) == []
+
+    def test_get_dependencies_one(self):
+        assert list(get_dependencies("pkg1", {"pkg1": []}, 0)) == []
+
+    def test_get_dependencies_one_with_one_dep(self):
+        assert list(get_dependencies("pkg1", {"pkg1": ["pkg2"]}, 0)) == [('pkg2', 1)]
+
+    def test_get_dependencies_one_with_two_deps(self):
+        assert list(get_dependencies("pkg1", {"pkg1": ["pkg2", "pkg3"]}, 0)) == [('pkg2', 1),
+                                                                                 ('pkg3', 1)]
+
+    def test_get_dependencies_two_with_one_dep(self):
+        assert list(get_dependencies("pkg1", {"pkg1": ["pkg2"], "pkg3": ["pkg4"]}, 0)) == [
+            ('pkg2', 1)]

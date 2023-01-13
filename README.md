@@ -1,4 +1,6 @@
 # CERN OA
+[![Pylint](https://github.com/Pinzauti/cern_oa/actions/workflows/pylint.yml/badge.svg)](https://github.com/Pinzauti/cern_oa/actions/workflows/pylint.yml)
+
 Online Assessment for CERN.
 ## How to run
 

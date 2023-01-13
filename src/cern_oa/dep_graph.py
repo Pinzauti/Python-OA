@@ -82,8 +82,8 @@ def main():
     :return: None
     :rtype: None
     """
-    parser = argparse.ArgumentParser(description="")
-    parser.add_argument('-f', '--file', type=str, help='Path to file with dependencies',
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--file', type=str, help='Path to the json file.',
                         default=os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json'))
     file = open_file(parser.parse_args().file)
     print_graph(get_dependency_graph(file))

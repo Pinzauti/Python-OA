@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import mock_open, patch
-from src.cern_oa.dep_graph import open_file, get_dependencies, get_dependency_graph
+from cern_oa.dep_graph import open_file, get_dependencies, get_dependency_graph
 
 
 @pytest.fixture

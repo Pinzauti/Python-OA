@@ -8,6 +8,12 @@ pip install .                           # It installs the package
 python3 -m cern_oa.dep_graph            # It executes the script
 ```
 
+## How to test
+
+```bash
+pip install .[test]                     # It installs the package and the test dependencies
+python3 -m pytest                       # It executes the tests
+```
 
 
 

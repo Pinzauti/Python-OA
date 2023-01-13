@@ -1,5 +1,5 @@
 # CERN OA
-[![Python package](https://github.com/Pinzauti/cern_oa/actions/workflows/python-package.yml/badge.svg)](https://github.com/Pinzauti/cern_oa/actions/workflows/python-package.yml)
+[![Tests](https://github.com/Pinzauti/cern_oa/actions/workflows/python-package.yml/badge.svg)](https://github.com/Pinzauti/cern_oa/actions/workflows/python-package.yml)
 [![Pylint](https://github.com/Pinzauti/cern_oa/actions/workflows/pylint.yml/badge.svg)](https://github.com/Pinzauti/cern_oa/actions/workflows/pylint.yml)
 
 Online Assessment for CERN.

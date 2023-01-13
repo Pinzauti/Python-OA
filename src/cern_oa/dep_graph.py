@@ -1,5 +1,11 @@
 """
+This is the main script, it contains four functions:
+    - open_file: It opens the json file and returns the content as a dictionary.
+    - get_dependencies: It returns the dependencies of the package.
+    - get_dependency_graph: It returns the dependency graph.
+    - print_graph: It prints the dependency graph.
 
+When directly executed it asks for the path to the json and prints the dependency graph.
 """
 import os
 import argparse
@@ -10,7 +16,7 @@ from collections.abc import Generator
 
 def open_file(path: str = os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json')) -> dict[str, list]:
     """
-    It opens the file and returns the content as a dictionary.
+    It opens the json file and returns the content as a dictionary.
     :param path: Path to the file.
     :type path: str
     :return: Content of the file.
@@ -29,14 +35,14 @@ def get_dependencies(package: str, dependencies: dict[str, list], depth: int) \
         -> Generator[tuple[str, int]]:
     """
     It returns the dependencies of the package.
-    :param package:
-    :type package:
-    :param dependencies:
-    :type dependencies:
-    :param depth:
-    :type depth:
-    :return:
-    :rtype:
+    :param package: Name of the package.
+    :type package: str
+    :param dependencies: Dictionary with the dependencies.
+    :type dependencies: dict[str, list]
+    :param depth: Depth of the package in the dependency graph.
+    :type depth: int
+    :return: Generator with the dependencies of the package.
+    :rtype: Generator[tuple[str, int]]
     """
     if package in dependencies:
         for dependency in dependencies[package]:
@@ -46,11 +52,11 @@ def get_dependencies(package: str, dependencies: dict[str, list], depth: int) \
 
 def get_dependency_graph(dependencies: dict[str, list]) -> Generator[tuple[str, int]]:
     """
-
-    :param dependencies:
-    :type dependencies:
-    :return:
-    :rtype:
+    It returns the dependency graph.
+    :param dependencies: Dictionary with the dependencies.
+    :type dependencies: dict[str, list]
+    :return: Generator with the dependency graph.
+    :rtype: Generator[tuple[str, int]]
     """
     for package in dependencies:
         yield package, 0
@@ -59,11 +65,11 @@ def get_dependency_graph(dependencies: dict[str, list]) -> Generator[tuple[str, 
 
 def print_graph(graph: Generator[tuple[str, int]]) -> None:
     """
-
-    :param graph:
-    :type graph:
-    :return:
-    :rtype:
+    It prints the dependency graph.
+    :param graph: Generator with the dependency graph.
+    :type graph: Generator[tuple[str, int]]
+    :return: None
+    :rtype: None
     """
     for package, depth in graph:
         print("  " * depth + "- " + package)
@@ -71,9 +77,9 @@ def print_graph(graph: Generator[tuple[str, int]]) -> None:
 
 def main():
     """
-
-    :return:
-    :rtype:
+    It parses the argument file and prints the dependency graph.
+    :return: None
+    :rtype: None
     """
     parser = argparse.ArgumentParser(description="")
     parser.add_argument('-f', '--file', type=str, help='Path to file with dependencies',

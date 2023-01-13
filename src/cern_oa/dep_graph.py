@@ -14,7 +14,8 @@ import sys
 from collections.abc import Generator
 
 
-def open_file(path: str = os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json')) -> dict[str, list]:
+def open_file(path: str = os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json')) \
+        -> dict[str, list]:
     """
     It opens the json file and returns the content as a dictionary.
     :param path: Path to the file.

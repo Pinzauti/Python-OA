@@ -1,0 +1,2 @@
+[MASTER]
+ignore-paths = ^src/cern_oa/test_dep_graph.py$

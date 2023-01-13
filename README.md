@@ -1,5 +1,5 @@
 # CERN OA
-
+Online Assessment for CERN.
 ## How to run
 
 First of all you have to create your virtual environment (`python3 -m venv env`). Then activate it and then execute the following commands:

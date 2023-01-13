@@ -1,0 +1,21 @@
+[project]
+name = "cern_oa"
+version = "1.0.0"
+description = "Online Assesment for CERN"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE.txt"}
+authors = [
+  {name = "Francesco Pinzauti", email = "francesco@pinzauti.xyz" }
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.urls]
+"Homepage" = "https://github.com/Pinzauti/cern_oa"
+"Bug Reports" = "https://github.com/Pinzauti/cern_oa/issues"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"

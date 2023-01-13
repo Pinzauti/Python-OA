@@ -57,6 +57,16 @@ def get_dependency_graph(dependencies: dict[str, list]) -> Generator[tuple[str, 
         yield from get_dependencies(package, dependencies, 0)
 
 
+def print_graph(graph: Generator[tuple[str, int]]) -> None:
+    """
+
+    :param graph:
+    :type graph:
+    :return:
+    :rtype:
+    """
+    for package, depth in graph:
+        print("  " * depth + "- " + package)
 
 
 def main():
@@ -69,7 +79,7 @@ def main():
     parser.add_argument('-f', '--file', type=str, help='Path to file with dependencies',
                         default=os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json'))
     file = open_file(parser.parse_args().file)
-
+    print_graph(get_dependency_graph(file))
 
 
 if __name__ == '__main__':

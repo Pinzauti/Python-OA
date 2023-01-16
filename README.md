@@ -28,13 +28,13 @@ The project has the following file structure.
     │       └── python-package.yml              # Python workflow
     ├── src/                                    # Source code
     │   └── cern_oa/                            # Package
-    │       ├── tests/                          # Tests
-    │       │   ├── __init__.py                 # Init file
-    │       │   └── test_dep_graph.py           # Tests for dep_graph.py
     │       ├── tmp/                            # Temporary files
     │       │   └── deps.json                   # Example json
     │       ├── __init__.py                     # Package init
     │       └── dep_graph.py                    # Main script
+    ├── tests/                                  # Tests
+    │   ├── __init__.py                         # Tests init
+    │   └── test_dep_graph.py                   # Tests for the main script
     ├── .gitignore                              # Git ignore file
     ├── LICENSE                                 # License file
     ├── pyproject.toml                          # Package configuration file

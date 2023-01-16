@@ -25,15 +25,15 @@ def open_file(path: str = os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json
     """
     try:
         with open(path, encoding='UTF-8') as file:
-            dependencies = json.load(file)
+            dependencies: dict[str, list] = json.load(file)
     except FileNotFoundError:
         sys.stderr.write("The file path is incorrect.")
         sys.exit()
     return dependencies
 
 
-def get_dependencies(package: str, dependencies: dict[str, list], depth: int) \
-        -> Generator[tuple[str, int]]:
+def get_dependencies(package: str, dependencies: dict[str, list], depth: int,
+                     seen: set | None = None) -> Generator[tuple[str, int]]:
     """
     It returns the dependencies of the package.
     :param package: Name of the package.
@@ -42,13 +42,18 @@ def get_dependencies(package: str, dependencies: dict[str, list], depth: int) \
     :type dependencies: dict[str, list]
     :param depth: Depth of the package in the dependency graph.
     :type depth: int
+    :param seen: Set with the packages already visited.
+    :type seen: set | None
     :return: Generator with the dependencies of the package.
     :rtype: Generator[tuple[str, int]]
     """
+    seen: set = seen or {package}
     if package in dependencies:
         for dependency in dependencies[package]:
             yield dependency, depth + 1
-            yield from get_dependencies(dependency, dependencies, depth + 1)
+            if package + dependency not in seen and dependency not in seen:
+                seen.add(package + dependency)
+                yield from get_dependencies(dependency, dependencies, depth + 1, seen)
 
 
 def get_dependency_graph(dependencies: dict[str, list]) -> Generator[tuple[str, int]]:
@@ -85,7 +90,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--file', type=str, help='Path to the json file.',
                         default=os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json'))
-    file = open_file(parser.parse_args().file)
+    file: dict[str, list] = open_file(parser.parse_args().file)
     print_graph(get_dependency_graph(file))
 
 

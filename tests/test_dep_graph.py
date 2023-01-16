@@ -41,6 +41,17 @@ class TestGetDependencyGraph:
                [('pkg1', 0), ('pkg2', 1), ('pkg3', 2), ('pkg4', 3), ('pkg2', 0), ('pkg3', 1),
                 ('pkg4', 2), ('pkg3', 0), ('pkg4', 1)]
 
+    def test_get_dependency_graph_circular(self):
+        assert list(get_dependency_graph({
+            "pkg1": ["pkg2", "pkg3"],
+            "pkg2": ["pkg1"],
+            "pkg3": [],
+            "pkg4": ["pkg1"]
+        })) == \
+               [('pkg1', 0),('pkg2', 1),('pkg1', 2),('pkg3', 1),('pkg2', 0),('pkg1', 1),('pkg2', 2),(
+                   'pkg3', 2),('pkg3', 0),('pkg4', 0),('pkg1', 1),('pkg2', 2),('pkg1', 3),('pkg2', 4),(
+                   'pkg3', 4),('pkg3', 2)]
+
 
 class TestGetDependencies:
     def test_get_dependencies(self):

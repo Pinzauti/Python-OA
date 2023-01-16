@@ -91,7 +91,6 @@ def main():
     parser.add_argument('-f', '--file', type=str, help='Path to the json file.',
                         default=os.path.join(os.getcwd(), './src/cern_oa/tmp/deps.json'))
     file: dict[str, list] = open_file(parser.parse_args().file)
-    print(*get_dependency_graph(file))
     print_graph(get_dependency_graph(file))
 
 

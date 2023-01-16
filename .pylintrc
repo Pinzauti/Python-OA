@@ -1,2 +1,2 @@
 [MASTER]
-ignore-paths = ^src/cern_oa/tests/test_dep_graph.py$
+ignore-paths = ^tests/test_dep_graph.py$
